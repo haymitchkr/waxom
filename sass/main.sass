@@ -6,16 +6,41 @@ $darkgrey: #555555
 $lightgrey: #8c8c8c
 //styles
 
+body.lock
+	overflow: hidden
+
+
+.wrapper
+	overflow: hidden
+	min-height: 100%
 .blur-container
-	transition: filter 0.3s ease
 	filter: blur(0)
+	transition: filter 0.3s ease
+	position: relative
+	&:before
+		content: ""
+		position: absolute
+		left: 0
+		top: 0
+		width: 100%
+		pointer-events: none
+		height: 100%
+		background-color: rgba(0,0,0, 0)
+		z-index: 10
+		transition: background-color 0.3s ease
 .blur-container.active
 	filter: blur(5px)
-	background-color: rgba(0,0,0, 0.4)
+	&:before
+		background-color: rgba(0,0,0, 0.6)
 a
 	text-decoration: none
 	color: inherit
 
+button>a
+	display: block
+	width: 100%
+	height: 100%
+	padding: 10px 0
 .container
 	max-width: 1140px
 	padding: 0 15px
@@ -40,12 +65,12 @@ a
 	text-transform: uppercase
 	border: none
 	cursor: pointer
-	padding: 10px 0
 	width: 170px
 	background-color: #998675
 	box-shadow: inset 0 -3px 0 #736357
 	border-radius: 3px
 	transition: all 0.3s ease
+	padding: 0
 	&:hover
 		background-color: $beige
 		box-shadow: inset 0 -3px 5px #736357
@@ -110,6 +135,7 @@ a
 				margin-left: 0
 .header__nav
 	@media (max-width: 1000px)
+		z-index: 20
 		.nav-list
 			transition: all 0.3s ease
 			&__item:nth-child(odd)
@@ -160,14 +186,12 @@ a
 	z-index: 50
 	@media (max-width: 1000px)
 		display: block
-	&:hover
-		span,&:before,&:after
-			background-color: $beige
+	span,&:before,&:after
+		background-color: $beige
 	span,&:before,&:after
 		position: absolute
 		width: 100%
 		height: 2px
-		background-color: #fff
 	span
 		top: 50%
 		transform: translate(0,-50%)
@@ -177,6 +201,8 @@ a
 	&:after
 		content: ''
 		bottom: 0
+.burger.active
+	
 //main
 //head-slider
 .slick-slider.slick-dotted
@@ -338,3 +364,904 @@ a
 				&:after
 					background-color: $beige
 					width: 90px
+//slider
+.slider
+	background-color: #fbfaf8
+	text-align: center
+	padding-top: 80px
+	@media (max-width: 500px)
+		padding-top: 40px
+	&__item
+		align-self: end
+		img
+			width: 100%
+			height: auto
+	&__wrapper
+		display: grid
+		grid-template-columns: repeat(12, 1fr)
+		grid-template-rows: 1fr
+		@media (max-width: 500px)
+			grid-template-rows: repeat(4, 1fr)
+			grid-template-columns: 1fr
+	&__item--left
+		grid-column-start: 1
+		grid-column-end: 9
+		grid-row-start: 1
+		grid-row-end: 2
+		z-index: 3
+		@media (max-width: 500px)
+			grid-column-start: 1
+			grid-column-end: 2
+			grid-row-start: 1
+			grid-row-end: 3
+			align-self: center
+			img
+				width: 80%
+	&__item--center
+		grid-column-start: 3
+		grid-column-end: 11
+		grid-row-start: 1
+		grid-row-end: 3
+		z-index: 5
+		@media (max-width: 500px)
+			grid-column-start: 1
+			grid-column-end: 2
+			grid-row-start: 2
+			grid-row-end: 4
+	&__item--right
+		grid-column-start: 5
+		grid-column-end: 13
+		grid-row-start: 1
+		grid-row-end: 2
+		z-index: 3
+		@media (max-width: 500px)
+			grid-column-start: 1
+			grid-column-end: 2
+			grid-row-start: 3
+			grid-row-end: 5
+			align-self: center
+			img
+				width: 80%
+	&__title
+		color: $darkgrey
+		font-family: Raleway
+		font-size: 30px
+		font-weight: 700
+		margin-bottom: 24px
+		@media (max-width: 500px)
+			font-size: 25px
+	&__subtitle
+		color: $lightgrey
+		font-family: Montserrat
+		font-size: 16px
+		font-weight: 300
+		line-height: 28px
+		max-width: 760px
+		margin: 0 auto
+		margin-bottom: 40px
+		@media (max-width: 500px)
+			margin-bottom: 0
+//text-boxes
+.text-boxes
+	padding: 50px 0
+	margin-top: -8px
+	background-image: linear-gradient(to right, #211b19 0%, #4e3427 100%)
+	&__row
+		display: flex
+		justify-content: space-between
+		align-items: center
+		@media (max-width: 700px)
+			flex-wrap: wrap
+	&__text-wrapper
+		text-align: left
+		@media (max-width: 700px)
+			width: 100%
+	&__title
+		color: #ffffff
+		font-family: Raleway
+		font-size: 28px
+		font-weight: 400
+		@media (max-width: 768px)
+			font-size: 24px
+		.beige
+			color: $beige
+	&__subtitle
+		color: #615855
+		font-family: Montserrat
+		font-size: 18px
+		font-weight: 300
+		@media (max-width: 768px)
+			font-size: 16px
+	&__button
+		@media (max-width: 700px)
+			margin: 0 auto
+			margin-top: 15px
+//latest-project
+.latest-project
+	text-align: center
+	padding-top: 80px
+	&__title
+		color: $darkgrey
+		font-family: Raleway
+		font-size: 30px
+		font-weight: 400
+	&__subtitle
+		color: $lightgrey
+		font-family: Montserrat
+		font-size: 16px
+		font-weight: 300
+		line-height: 28px
+		max-width: 760px
+		margin: 0 auto
+		margin-bottom: 40px
+	.latest-project__nav-burger
+		position: relative
+		width: 40px
+		height: 25px
+		display: none
+		cursor: pointer
+		left: 15px
+		@media (max-width: 768px)
+			display: block
+		span
+			position: absolute
+			top: 0
+			width: 100%
+			height: 3px
+			transform: translate(0,-50%)
+			background-color: $beige
+			transition: width 0.3s ease
+			left: 0
+		&:after
+			content: ""
+			position: absolute
+			top: 50%
+			transform: translate(0,-50%)
+			width: 70%
+			height: 3px
+			background-color: $beige
+			transition: width 0.3s ease
+			left: 0
+		&:before
+			content: ""
+			position: absolute
+			bottom: 0
+			width: 40%
+			height: 3px
+			background-color: $beige
+			transition: width 0.3s ease
+			left: 0
+	.latest-project__nav-burger.active
+		&:after,&:before
+			width: 100%
+	&__nav-wrapper
+		position: relative
+		@media (max-width: 768px)
+			text-align: left
+	&__nav
+		display: flex
+		justify-content: center
+		@media (max-width: 768px)
+			flex-direction: column
+			position: absolute
+			z-index: 10
+			left: -120px
+			top: 5px
+			background-color: rgba(0,0,0, 0.7)
+			opacity: 0
+			transition: all 0.3s ease
+			visibility: hidden
+			transition-delay: visibility 0.3s
+	&__nav.active
+		@media (max-width: 768px)
+			opacity: 1
+			visibility: visible
+			left: 15px
+	&__nav-item
+		margin-right: 10px
+		@media (max-width: 768px)
+			margin: 0
+		a
+			color: $lightgrey
+			padding: 10px 25px
+			border: 1px solid $lightgrey
+			border-radius: 5px
+			background-color: transparent
+			transition: all 0.3s ease
+			box-sizing: border-box
+			font-family: Montserrat
+			font-size: 14px
+			font-weight: 300
+			@media (max-width: 768px)
+				border: none
+				display: block
+				border-bottom: 1px solid black
+				border-radius: 0
+				padding: 15px 25px
+				font-size: 18px
+				color: #fff
+			&:hover
+				background-color: $beige
+				color: #fff
+				border: 1px solid transparent
+	&__nav-item:last-child
+		margin-right: 0
+	.project-list
+		display: flex
+		flex-wrap: wrap
+		justify-content: space-between
+		margin-top: 50px
+		.project-item
+			width: 30%
+			margin-bottom: 30px
+			@media (max-width: 768px)
+				width: 49%
+			@media (max-width: 550px)
+				width: 100%
+			&__img
+				width: 100%
+				position: relative
+				img
+					width: 100%
+					height: auto
+					filter: brightness(1)
+					transition: filter 0.3s ease
+				.lupa
+					position: absolute
+					top: 50%
+					transform: translate(-50%,-50%)
+					opacity: 0
+					left: 50%
+					transition: opacity 0.3s ease
+					path
+						fill: #fff
+					&:hover path
+						fill: $beige
+			&__text-wrapper
+				padding: 30px
+				background-color: #fbfaf8
+				position: relative
+				width: 100%
+				text-align: left
+				margin-top: -8px
+				@media (max-width: 550px)
+					padding: 15px
+				&:before
+					position: absolute
+					content: ""
+					top: -8px
+					left: 20px
+					width: 0
+					height: 0
+					border-left: 10px solid transparent
+					border-right: 10px solid transparent
+					border-bottom: 10px solid #fbfaf8
+			&__title
+				color: $beige
+				font-family: Raleway
+				font-size: 20px
+				font-weight: 500
+			&__subtitle
+				color: #d1d1d1
+				font-family: Montserrat
+				font-size: 14px
+				font-weight: 300
+				margin-top: 15px
+			&:hover
+				.project-item__img
+					img
+						filter: brightness(0.5)
+					.link,.lupa
+						opacity: 1
+				.project-item__text-wrapper
+					background-color: #362f2d
+					&:before
+						border-bottom: 10px solid #362f2d
+				.project-item__title
+					color: #fff
+				.project-item__subtitle
+					color: $beige
+
+// excellent-mobile
+.excellent-mobile
+	&__wrapper
+		display: flex
+		padding-top: 30px
+		@media (max-width: 900px)
+			flex-direction: column-reverse
+			align-items: center
+	&__img
+		width: 40%
+		@media (max-width: 900px)
+			width: 50%
+		@media (max-width: 500px)
+			width: 70%
+		img
+			width: 100%
+			height: auto
+			position: relative
+			bottom: -7px
+	&__content
+		width: 60%
+		@media (max-width: 900px)
+			width: 100%
+	&__title
+		color: $darkgrey
+		font-family: Raleway
+		font-size: 30px
+		font-weight: 400
+		margin-top: 115px
+		@media (max-width: 1000px)
+			margin-top: 60px
+		@media (max-width: 900px)
+			margin-top: 0
+			text-align: center
+	p
+		font-family: Montserrat
+		font-size: 16px
+		font-weight: 300
+		line-height: 28px
+		color: $lightgrey
+		margin-top: 40px
+		@media (max-width: 1000px)
+			margin-top: 20px
+	&__list
+		padding-left: 100px
+		margin-top: 45px
+		@media (max-width: 1000px)
+			margin-top: 25px
+		@media (max-width: 768px)
+			padding-left: 50px
+	&__list-item
+		font-family: Montserrat
+		font-size: 16px
+		font-weight: 300
+		color: $lightgrey
+		position: relative
+		margin-bottom: 10px
+		&:before
+			content: ''
+			position: absolute
+			left: -50px
+			top: 0
+			width: 20px
+			height: 20px
+			background-image: url(../img/chekmarkIcon.png)
+			background-repeat: no-repeat
+			background-size: 100% 100%
+			@media (max-width: 768px)
+				left: -30px
+//counters
+.counters
+	background-image: linear-gradient(to right, #211b19 0%, #4e3427 100%)
+	@media (max-width: 768px)
+		background-image: linear-gradient(to bottom, #211b19 0%, #4e3427 100%)
+	&__row
+		display: flex
+		justify-content: space-between
+		align-items: center
+		padding: 60px 0
+		@media (max-width: 768px)
+			flex-wrap: wrap
+			justify-content: space-evenly
+			padding-bottom: 30px
+	.counter-item
+		width: 15%
+		text-align: center
+		@media (max-width: 768px)
+			width: 30%
+			margin-bottom: 60px
+		@media (max-width: 550px)
+			width: 100%
+		&__img
+			margin: 0 auto
+			max-width: 60px
+			max-width: 60px
+			img
+				width: 80%
+				height: auto
+		&__number
+			color: #ffffff
+			font-family: Montserrat
+			font-size: 48px
+			font-weight: 200
+			margin-top: 10px
+		&__title
+			font-family: Montserrat
+			font-size: 14px
+			font-weight: 300
+			text-transform: uppercase
+			color: $beige
+			position: relative
+			&:after
+				content: ''
+				width: 30px
+				height: 2px
+				background-color: #fff
+				position: absolute
+				bottom: -30px
+				left: 50%
+				transform: translate(-50%,0)
+//partners
+.partners
+	background-repeat: no-repeat
+	background-size: cover
+	background-position: center center
+	position: relative
+	z-index: -2
+	&:before
+		position: absolute
+		content: ""
+		width: 100%
+		height: 100%
+		background-color: black
+		opacity: 0.5
+		pointer-events: none
+		z-index: -1
+	&__wrapper
+		display: flex
+		justify-content: space-between
+		align-items: center
+		padding: 150px 0
+		@media (max-width: 1000px)
+			flex-wrap: wrap
+		@media (max-width: 600px)
+			padding-top: 100px
+			padding-bottom: 50px
+	&__item
+		text-align: center
+		@media (max-width: 1000px)
+			width: 50%
+			margin-bottom: 50px
+		@media (max-width: 600px)
+			width: 100%
+//recent-post
+.recent-post
+	text-align: center
+	padding-top: 80px
+	padding-bottom: 100px
+	overflow: hidden
+	position: relative
+	&__arrows
+		display: flex
+		position: absolute
+		bottom: 60px
+		left: 50%
+		transform: translate(-50%,0)
+	&__arrow-prev
+		transform: rotate(180deg)
+		cursor: pointer
+		margin: 0 5px
+		display: flex
+		align-items: center
+		path
+			fill: $lightgrey
+	&__arrow-next
+		cursor: pointer
+		margin: 0 5px
+		display: flex
+		align-items: center
+		path
+			fill: $beige
+	&__title
+		color: $darkgrey
+		font-family: Raleway
+		font-size: 30px
+		font-weight: 400
+	&__subtitle
+		font-family: Montserrat
+		font-size: 16px
+		font-weight: 300
+		line-height: 28px
+		max-width: 760px
+		margin: 0 auto
+		margin-top: 30px
+		margin-bottom: 40px
+	.post-item
+		position: relative
+		margin: 0 15px
+		@media (max-width: 700px)
+			margin: 0 10px
+		&__img
+			position: relative
+			z-index: -1
+			&:before
+				position: absolute
+				content: ""
+				width: 100%
+				height: 100%
+				top: 0
+				left: 0
+				z-index: 0
+				background-color: #000
+				opacity: 0
+				transition: all 0.3s ease
+			img
+				width: 100%
+				height: auto
+		&__date
+			position: absolute
+			width: 50px
+			height: 60px
+			top: 20px
+			left: 20px
+			color: #fff
+			text-align: center
+			&-num
+				width: 100%
+				font-family: Montserrat
+				font-size: 24px
+				font-weight: 300
+				line-height: 35px
+				border-radius: 3px 3px 0 0
+				background-color: #363636
+			&-month
+				width: 100%
+				line-height: 25px
+				font-family: Roboto
+				font-size: 12px
+				font-weight: 400
+				border-radius: 0 0 3px 3px
+				background-color: #252525
+		&__content
+			width: 100%
+			position: relative
+			top: -8px
+			padding: 30px 0 30px 30px
+			border: 1px solid #f8f8f8
+			background-color: #fff
+			text-align: left
+			transition: all 0.3s
+		&__title
+			font-family: Raleway
+			font-size: 20px
+			font-weight: 500
+			color: $darkgrey
+		&__text
+			margin-top: 20px
+			color: #8c8c8c
+			font-family: Montserrat
+			font-size: 14px
+			font-weight: 300
+			line-height: 22px
+			max-width: 300px
+		&__button
+			color: $beige
+			font-family: Montserrat
+			font-size: 14px
+			font-weight: 300
+			line-height: 20px
+			margin-top: 25px
+			position: relative
+			background-color: transparent
+			border: none
+			cursor: pointer
+			&:after
+				position: absolute
+				right: -10px
+				content: ""
+				top: 50%
+				transform: translate(0,-50%)
+				width: 0
+				height: 0
+				border-top: 5px solid transparent
+				border-left: 8px solid $beige
+				border-bottom: 5px solid transparent
+	.post-item:hover
+		.post-item__content
+			background-color: #362f2d
+			border: 1px solid transparent
+		.post-item__title
+			color: $beige
+		.post-item__text
+			color: #fff
+		.post-item__img:before
+			opacity: 0.5
+		.post-item__date-num
+			background-color: $beige
+		.post-item__date-month
+			background-color: #a48d72
+//footer
+.footer
+	background-color: #191919
+	color: #fff
+	padding: 80px 0 50px 0
+	&__wrapper
+		display: flex
+		flex-wrap: nowrap
+		justify-content: space-between
+		@media (max-width: 900px)
+			flex-wrap: wrap
+			justify-content: space-evenly
+	&__text
+		width: 23%
+		@media (max-width: 900px)
+			width: 40%
+		@media (max-width: 550px)
+			width: 80%
+		&:hover
+			.footer__text-p
+				color: $beige
+		&-p
+			font-family: Montserrat
+			font-size: 14px
+			font-weight: 300
+			line-height: 24px
+			color: $darkgrey
+			margin-top: 20px
+			margin-bottom: 30px
+		&-button
+			font-family: Montserrat
+			font-size: 14px
+			font-weight: 300
+			line-height: 20px
+			position: relative
+			background-color: transparent
+			border: none
+			color: #fff
+			cursor: pointer
+			&:after
+				position: absolute
+				right: -10px
+				content: ""
+				top: 50%
+				transform: translate(0,-50%)
+				width: 0
+				height: 0
+				border-top: 5px solid transparent
+				border-left: 8px solid #fff
+				border-bottom: 5px solid transparent
+	.footer-post
+		width: 23%
+		@media (max-width: 900px)
+			width: 40%
+		@media (max-width: 550px)
+			width: 80%
+		&__title
+			margin-top: 25px
+			font-family: Raleway
+			font-size: 24px
+			font-weight: 700
+		&__item
+			position: relative
+			padding: 10px 0
+			&:before
+				position: absolute
+				content: ""
+				width: 100%
+				height: 1px
+				background-color: #252525
+				bottom: 0
+				left: 0
+			&-text
+				font-family: Montserrat
+				font-size: 14px
+				font-weight: 300
+				line-height: 20px
+				color: $darkgrey
+			&-date
+				color: #363636
+				font-family: Montserrat
+				font-size: 12px
+				font-weight: 300
+				line-height: 20px
+			&:hover
+				.footer-post__item-date
+					color: #fff
+				.footer-post__item-text
+					color: $beige
+	.footer-twitter
+		width: 23%
+		@media (max-width: 900px)
+			width: 40%
+		@media (max-width: 550px)
+			width: 80%
+		&__title
+			margin-top: 25px
+			font-family: Raleway
+			font-size: 24px
+			font-weight: 700
+		&__item
+			padding: 10px 0
+			position: relative
+			&:before
+				position: absolute
+				content: ""
+				width: 100%
+				height: 1px
+				background-color: #252525
+				bottom: 0
+				left: 0
+			&:hover
+				.footer-twitter__item-date
+					color: #fff
+				.footer-twitter__item-text
+					color: $beige
+			&-text
+				color: $darkgrey
+				font-family: Montserrat
+				font-size: 14px
+				font-weight: 300
+				line-height: 20px
+				a
+					color: #00bff3
+			&-date
+				color: #363636
+				font-family: Montserrat
+				font-size: 12px
+				font-weight: 300
+				line-height: 20px
+	.footer-dribbble
+		width: 23%
+		@media (max-width: 900px)
+			width: 40%
+		@media (max-width: 550px)
+			width: 80%
+		&__title
+			font-family: Raleway
+			font-size: 24px
+			font-weight: 700
+			margin-top: 25px
+			margin-bottom: 20px
+		&__items
+			display: flex
+			justify-content: space-between
+			flex-wrap: wrap
+		&__item
+			width: 48%
+			img
+				width: 100%
+				height: auto
+
+//popups
+#startedForm
+	.popup__content
+		background-color: #fff
+		border-radius: 20px
+		max-width: 550px
+		padding: 10px
+		@media (max-width: 600px)
+			max-width: 400px
+		.popup__title
+			font-family: Montserrat
+			font-size: 36px
+			font-weight: 400px
+			text-align: center
+			color: $darkgrey
+			margin-bottom: 30px
+		.popup__form
+			display: flex
+			flex-direction: column
+			justify-content: center
+			align-items: center
+			input
+				max-width: 500px
+				width: 100%
+				margin: 5px auto
+				border-radius: 10px
+				padding: 0 10px
+			&-button
+					color: #ffffff
+					font-family: Raleway
+					font-size: 14px
+					font-weight: 700
+					text-transform: uppercase
+					border: none
+					cursor: pointer
+					width: 170px
+					background-color: #998675
+					box-shadow: inset 0 -3px 0 #736357
+					border-radius: 3px
+					transition: all 0.3s ease
+					padding: 5px
+					margin-top: 30px
+					margin-bottom: 10px
+					&:hover
+						background-color: $beige
+						box-shadow: inset 0 -3px 5px #736357
+.popup.open
+	opacity: 1
+	visibility: visible
+.popup
+	position: fixed
+	width: 100%
+	height: 100%
+	background-color: rgba(0,0,0, 0.7)
+	top: 0
+	left: 0
+	opacity: 0
+	visibility: hidden
+	transition: all 0.5s ease
+	z-index: 500
+	&__body
+		min-height: 100%
+		display: flex
+		align-items: center
+		justify-content: center
+		padding: 30px 10px
+	&__content
+		position: relative
+		max-width: 800px
+		width: 100%
+		background-color: #fff
+	&__close
+		position: absolute
+		right: 10px
+		top: 10px
+		font-size: 20px
+		color: #000
+		text-decoration: none
+		font-family: sans-serif
+	&__img
+		img
+			display: block
+			width: 100%
+			height: auto
+.popup
+	.post-item
+		position: relative
+		margin: 0 15px
+		margin-top: 15px
+		&__img
+			position: relative
+			z-index: 1
+			&:before
+				position: absolute
+				content: ""
+				width: 100%
+				height: 100%
+				top: 0
+				left: 0
+				z-index: 0
+				background-color: #000
+				opacity: 0
+				transition: all 0.3s ease
+			img
+				width: 100%
+				height: auto
+		&__date
+			position: absolute
+			width: 50px
+			height: 60px
+			top: 20px
+			left: 20px
+			color: #fff
+			text-align: center
+			z-index: 10
+			&-num
+				width: 100%
+				font-family: Montserrat
+				font-size: 24px
+				font-weight: 300
+				line-height: 35px
+				border-radius: 3px 3px 0 0
+				background-color: #363636
+			&-month
+				width: 100%
+				line-height: 25px
+				font-family: Roboto
+				font-size: 12px
+				font-weight: 400
+				border-radius: 0 0 3px 3px
+				background-color: #252525
+		&__content
+			width: 100%
+			position: relative
+			top: -8px
+			padding: 30px 0 30px 30px
+			border: 1px solid #f8f8f8
+			background-color: #fff
+			text-align: left
+			transition: all 0.3s
+		&__title
+			font-family: Raleway
+			font-size: 20px
+			font-weight: 500
+			color: $darkgrey
+		&__text
+			margin-top: 20px
+			color: #8c8c8c
+			font-family: Montserrat
+			font-size: 14px
+			font-weight: 300
+			line-height: 22px
